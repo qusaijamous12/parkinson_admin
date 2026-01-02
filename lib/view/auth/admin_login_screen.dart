@@ -124,7 +124,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                           controller: _emailController,
                           style: ralewayStyle.copyWith(
                             fontWeight: FontWeight.w400,
-                            color: ColorManager.kPrimary,
+                            color: Colors.black,
                             fontSize: 12.0,
                           ),
 
@@ -167,7 +167,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
 
                           style: ralewayStyle.copyWith(
                             fontWeight: FontWeight.w400,
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 12.0,
                           ),
                           obscureText: true,

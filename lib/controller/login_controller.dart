@@ -204,10 +204,53 @@ class LoginController extends GetxController{
 
 
 
+  final createVideoStatus=Rx<ApiStatus>(ApiStatus.initial);
+  Future<void> createVideoLink({required final String videoUrl,required final String title,required final String subscribtion,required final String notes})async{
+    
+    
+    try{
+      createAccountStatus(ApiStatus.loading);
+      final result=await _firebaseFireStore.collection('videos').add({
+        'video_url':videoUrl,
+        'title':title,
+        'subscribe':subscribtion,
+        'notes':notes
+      });
+      createAccountStatus(ApiStatus.success);
+
+    }catch(error){
+      Utils.printLog('Error When Create Video Link ${error.toString()}');
+      createAccountStatus(ApiStatus.failure);
+    }
+  }
+  
+  final _videos=RxList<VideoModel>([]);
+  final getVideosStatus = Rx<ApiStatus>(ApiStatus.initial);
+
+  Future<void> getVideosLink() async {
+    try {
+      getVideosStatus(ApiStatus.loading);
+
+      final result = await _firebaseFireStore.collection('videos').get();
+
+      _videos
+        ..clear()
+        ..addAll(
+          result.docs.map((e) => VideoModel.fromJson(e.data())).toList(),
+        );
+
+      getVideosStatus(ApiStatus.success);
+    } catch (error) {
+      getVideosStatus(ApiStatus.failure);
+      Utils.printLog('Error When Get Videos ${error.toString()}');
+    }
+  }
+
 
   List<UserModel> get allUsers=>_allUser;
   List<UserModel> get allDoctors=>_allDoctors;
   List<AppointmentModel> get allAppointments=>_allAppointments;
+  List<VideoModel> get videos=>_videos;
 
 
 

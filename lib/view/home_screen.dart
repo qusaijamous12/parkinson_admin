@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:parknson_admin/controller/login_controller.dart';
 import 'package:parknson_admin/shared/color_manager.dart';
 import 'package:parknson_admin/view/create_doctor_screen.dart';
+import 'package:parknson_admin/view/videos_link.dart';
 import 'package:redacted/redacted.dart';
 
 import '../model/user_model.dart';
@@ -110,18 +111,37 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: ColorManager.kPrimary,
-        elevation: 6,
-        icon: const Icon(Icons.person_add, color: Colors.white),
-        label: const Text(
-          'Create Doctor',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        spacing: 20,
+        children: [
+          FloatingActionButton.extended(
+            backgroundColor: ColorManager.kPrimary,
+            elevation: 6,
+            icon: const Icon(Icons.person_add, color: Colors.white),
+            label: const Text(
+              'Create Doctor',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            onPressed: ()=>Get.to(()=>CreateDoctorScreen()),
           ),
-        ),
-        onPressed: ()=>Get.to(()=>CreateDoctorScreen()),
+          FloatingActionButton.extended(
+            backgroundColor: ColorManager.kPrimary,
+            elevation: 6,
+            icon: const Icon(Icons.add, color: Colors.white),
+            label: const Text(
+              'Add Videos Link',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            onPressed: ()=>Get.to(()=>VideosLink()),
+          )
+        ],
       ),
     );
   }
