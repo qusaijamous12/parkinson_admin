@@ -26,6 +26,12 @@ class _CreateDoctorScreenState extends State<CreateDoctorScreen> {
   final TextEditingController uidController = TextEditingController();
 
   double rate = 3;
+  String _selectedDoctorType = 'doctor';
+
+  static const List<Map<String, String>> _doctorTypeOptions = [
+    {'label': 'Doctor', 'value': 'doctor'},
+    {'label': 'Physical Therapy', 'value': 'physical therapy'},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +98,8 @@ class _CreateDoctorScreenState extends State<CreateDoctorScreen> {
                     label: 'Major / Specialty',
                     icon: Icons.medical_services_outlined,
                   ),
+                  const SizedBox(height: 12),
+                  _doctorTypeSelector(),
                   _inputField(
                     controller: imageUrlController,
                     label: 'Image URL',
@@ -126,8 +134,10 @@ class _CreateDoctorScreenState extends State<CreateDoctorScreen> {
                   ),
                 ),
                 onPressed: _submit,
-                child: const Text(
-                  'Create Doctor Account',
+                child: Text(
+                  _selectedDoctorType == 'physical therapy'
+                      ? 'Create Physical Therapy Account'
+                      : 'Create Doctor Account',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -273,6 +283,41 @@ class _CreateDoctorScreenState extends State<CreateDoctorScreen> {
     );
   }
 
+  Widget _doctorTypeSelector() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Doctor Type',
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: _doctorTypeOptions.map((option) {
+            final value = option['value']!;
+            final label = option['label']!;
+            final isSelected = _selectedDoctorType == value;
+            return ChoiceChip(
+              label: Text(label),
+              selected: isSelected,
+              onSelected: (_) {
+                setState(() => _selectedDoctorType = value);
+              },
+              selectedColor: ColorManager.kPrimary,
+              backgroundColor: Colors.grey.shade200,
+              labelStyle: TextStyle(
+                color: isSelected ? Colors.white : Colors.black87,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+              ),
+            );
+          }).toList(),
+        ),
+      ],
+    );
+  }
+
   // ================= LOGIC =================
 
   void _submit() async {
@@ -288,6 +333,7 @@ class _CreateDoctorScreenState extends State<CreateDoctorScreen> {
       "profile_image": profileImageController.text,
       "uid": uidController.text,
       "rate": rate.toInt(),
+      "doctor_type": _selectedDoctorType,
       "user_type": "doctor",
     };
 
@@ -300,7 +346,8 @@ class _CreateDoctorScreenState extends State<CreateDoctorScreen> {
         image: imageUrlController.text,
         gender: '-',
         rate: rate,
-        major: majorController.text);
+        major: majorController.text,
+        doctorType: _selectedDoctorType);
 
 
     // TODO:

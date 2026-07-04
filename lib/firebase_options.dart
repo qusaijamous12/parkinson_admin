@@ -10,12 +10,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB_zP2P9_yz4HqGIFaZO45nZUikeu2UVcY',
-    authDomain: 'parkinson-c9f06.firebaseapp.com',
-    projectId: 'parkinson-c9f06',
-    storageBucket: 'parkinson-c9f06.firebasestorage.app',
-    messagingSenderId: '881949411565',
-    appId: '1:881949411565:web:3e8f1a5612ba24073ae4e4',
-      measurementId: 'G-FECQVR6DC4'
+    apiKey: 'AIzaSyCbqFAyEM1CNmZnZ8n1yAystVzCES6F_A4',
+    authDomain: 'parkinson-new.firebaseapp.com',
+    projectId: 'parkinson-new',
+    storageBucket: 'parkinson-new.firebasestorage.app',
+    messagingSenderId: '855772019150',
+    appId: '1:855772019150:web:326c6415f806187208539f',
+      measurementId: 'G-Z6WQ4XV2T6'
   );
 }

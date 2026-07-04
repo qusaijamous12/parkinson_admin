@@ -430,6 +430,11 @@ class DoctorsSection extends StatelessWidget {
                   doctor.email ?? '',
                   style: const TextStyle(fontSize: 12, color: Colors.grey),
                 ),
+                const SizedBox(height: 2),
+                Text(
+                  _formatDoctorType(doctor.doctorType),
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
               ],
             ),
           ),
@@ -437,6 +442,14 @@ class DoctorsSection extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _formatDoctorType(String? type) {
+    if (type == null || type.trim().isEmpty) return 'Doctor';
+    final normalized = type.replaceAll('_', ' ').toLowerCase();
+    if (normalized == 'physical therapy') return 'Physical Therapy';
+    if (normalized == 'doctor') return 'Doctor';
+    return '${normalized[0].toUpperCase()}${normalized.substring(1)}';
   }
 
   Widget _redactedDoctorTile(BuildContext context) {

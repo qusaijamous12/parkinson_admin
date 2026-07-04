@@ -6,6 +6,7 @@ class UserModel{
   final String ?uid;
   final String ?userName;
   final String ?userType;
+  final String ?doctorType;
 
 
   UserModel({
@@ -15,8 +16,9 @@ class UserModel{
     this.profileImage,
     this.uid,
     this.userName,
-    this.userType
-});
+    this.userType,
+    this.doctorType,
+  });
 
 
   factory UserModel.fromJson(final Map<String,dynamic> json){
@@ -27,7 +29,8 @@ class UserModel{
       profileImage: json['profile_image'],
       uid: json['uid'],
       userName: json['user_name'],
-      userType: json['user_type']
+      userType: json['user_type'],
+      doctorType: json['doctor_type'],
     );
   }
 

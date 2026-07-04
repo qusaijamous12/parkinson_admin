@@ -134,7 +134,8 @@ class LoginController extends GetxController{
     required String gender,
     required final num rate,
     required final String major,
-    required final String image
+    required final String image,
+    required String doctorType,
   }) async {
     try {
       createAccountStatus(ApiStatus.loading);
@@ -153,6 +154,7 @@ class LoginController extends GetxController{
           gender: gender,
           rate: rate,
           major: major,
+          doctorType: doctorType,
         );
         Get.offAll(()=> HomeScreen());
         createAccountStatus(ApiStatus.success);
@@ -181,6 +183,7 @@ class LoginController extends GetxController{
     required final String imageUrl,
     required final num rate,
     required final String major,
+    required final String doctorType,
 
   }) async {
     try {
@@ -193,6 +196,7 @@ class LoginController extends GetxController{
         'uid': uid,
         'rate':rate,
         'profile_image': imageUrl,
+        'doctor_type': doctorType,
         'user_type':'doctor'
       });
     } catch (e) {
