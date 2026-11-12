@@ -15,7 +15,7 @@ class DefaultFirebaseOptions {
     projectId: 'parkinson-new',
     storageBucket: 'parkinson-new.firebasestorage.app',
     messagingSenderId: '855772019150',
-    appId: '1:855772019150:web:326c6415f806187208539f',
-      measurementId: 'G-Z6WQ4XV2T6'
+    appId: '1:855772019150:web:5ebe46857c99538208539f',
+    measurementId: 'G-DMJ28PSFE1',
   );
 }
